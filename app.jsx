@@ -38,21 +38,6 @@ class CommentList extends React.Component {
   }
 }
 
-let aaa = [
-  {
-    "author": "Kieran",
-    "body": "body1"
-  },
-  {
-    "author": "Kieran",
-    "body": "body3"
-  },
-  {
-    "author": "Kieran",
-    "body": "body2"
-  }
-];
-
 class CommentBox extends React.Component {
   constructor(props) {
     super();
@@ -62,20 +47,18 @@ class CommentBox extends React.Component {
   }
 
   loadDataFromServer() {
-    this.setState({comments: aaa});
-    console.log(this.status);
-    //fetch(this.props.url)
-    //  .then((res) => {
-    //    return res.json();
-    //  })
-    //  .then((json) => {
-    //    console.log(json);
-    //    console.log(this)
-    //    this.setState({comments: json});
-    //  }.bind(this))
-    //  .catch((e) => {
-    //    console.log(e);
-    //  });
+    fetch(this.props.url)
+      .then((res) => {
+        return res.json();
+      })
+      .then((json) => {
+        console.log(json);
+        console.log(this);
+        this.setState({comments: json});
+      }.bind(this))
+      .catch((e) => {
+        console.log(e);
+      });
   }
 
   componentDidMount() {
